@@ -3,9 +3,10 @@ basepath=$(cd `dirname $0`; pwd)
 filename=${0##*/}
 project=$1
 branch=$2
+path=/data/www
 if [[ ! -n "$project" ]];
 then
-  echo "usage of project name is 'api|mapi|backend-old|backend|crontab|supplier|h5|dispatchService'"
+  echo "usage of project name is 'a|b|c'"
   exit
 else
    if [[ ! -n "$branch" ]];
@@ -13,12 +14,9 @@ else
      echo "usage of branch name is 'uat|master'"
      exit
    fi
-   if [[ $project = 'dispatchService' ]];
-   then
-        cd /data/www/dispatchService
-   else
-        cd /data/www/zhx-$project
-   fi
+
+   cd $path/$project
+
    git pull
    if [[ $branch = 'uat' ]];
    then
